@@ -47,6 +47,7 @@ def main():
     ap.add_argument("--tokenizer", default="tokenizer.json")
     ap.add_argument("--out", default="data/bin")
     ap.add_argument("--dialog-val-ratio", type=float, default=0.02)
+    ap.add_argument("--dialog-file", default="dialog.txt", help="data klasorundeki diyalog dosyasi")
     args = ap.parse_args()
 
     data, out = Path(args.data), Path(args.out)
@@ -65,7 +66,7 @@ def main():
 
     # Diyalog (ince ayar icin): dialog.txt'nin sonundaki %2'yi dogrulama yap.
     # clean_data.py dosyayi zaten karistirmisti, o yuzden sondan kesmek yansiz.
-    dlg = [l for l in read_lines(data / "dialog.txt") if l.strip()]
+    dlg = [l for l in read_lines(data / args.dialog_file) if l.strip()]
     n_val = max(1, int(len(dlg) * args.dialog_val_ratio))
     counts["dialog_train"] = encode_file(tok, dlg[:-n_val], out / "dialog_train.bin", eot_id)
     counts["dialog_val"] = encode_file(tok, dlg[-n_val:], out / "dialog_val.bin", eot_id)
