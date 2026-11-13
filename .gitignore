@@ -1,0 +1,26 @@
+# Veri (lisansli ve buyuk; repoya konmaz, README'de kaynak belirtilir)
+data/
+forum/
+dialog/
+*.jsonl
+*.bin
+*.parquet
+
+# Model agirliklari ve egitim ciktilari (Hugging Face Hub'a yuklenir)
+checkpoints/
+runs/
+*.pt
+*.pth
+*.safetensors
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Sirlar ve IDE
+.env
+.vscode/
+.idea/
